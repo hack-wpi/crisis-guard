@@ -13,14 +13,14 @@ class PublicApiController extends Controller
 
     public function flare(Request $request) {
         $this->validate($request, [
-            'long' => 'numeric|required',
+            'longitude' => 'numeric|required',
             'lat' => 'numeric|required',
             'user_token' => 'required',
             'type' => 'max:255',
 
         ]);
 
-        $long = $request->input('long');
+        $long = $request->input('longitude');
         $lat = $request->input('lat');
         $type = ($request->input('type'))? $request->input('type') : 'global';
         
