@@ -9,7 +9,7 @@ use Response;
 class PublicApiController extends Controller
 {
     public function __construct(){
-//       $this->middleware('auth:api');
+       $this->middleware('auth:api');
     }
 
     public function sendFlare(Request $request) {
@@ -23,6 +23,8 @@ class PublicApiController extends Controller
         $long = $request->input('longitude');
         $lat = $request->input('lat');
         $type = ($request->input('type'))? $request->input('type') : 'global';
+
+        DB::table('flares')->where('user_id', $userId)->update(['cleared_on' => date("Y-m-d H:i:s")]);
 
         $userId = $request->input('user_id');
 
