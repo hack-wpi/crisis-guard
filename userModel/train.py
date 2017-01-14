@@ -7,7 +7,7 @@ import os
 
 rootDir = '/Users/Dave/github/shltr/userModel/inputs/train'
 credFile = '/Users/Dave/github/shltr/userModel/client_secret.txt'
-modelName = 'clients'
+modelName = 'users'
 
 concepts = []
 
