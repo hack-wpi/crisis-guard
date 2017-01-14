@@ -2,8 +2,18 @@
 # Copyright 2017 Dave Machado
 
 from clarifai.rest import ClarifaiApp
-  
-app = ClarifaiApp("1n49sljmXv1ieUrlRx-hX7UifV1lSXCjp4sqKSG9", "3w_P5x5hLmVmBoPnJFSNq8hbgFFtG-CjSzFC73jk")
-    
+
+credFile = '/Users/Dave/github/shltr/userModel/client_secret.txt'
+
+def getCredentials():
+	creds = []
+	file = open(credFile, 'r')
+	creds.append(file.readline())
+	creds.append(file.readline())
+	return creds
+
+creds = getCredentials()
+app = ClarifaiApp(creds[0][:-1], creds[1][:-1])
+
 print(app.models.delete_all())
 print(app.inputs.delete_all())

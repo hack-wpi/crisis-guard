@@ -5,7 +5,7 @@ from clarifai.rest import ClarifaiApp
 from clarifai.rest import Image as ClImage
 import os
 
-rootDir = '/Users/Dave/github/shltr/userModel/inputs/training'
+rootDir = '/Users/Dave/github/shltr/userModel/inputs/train'
 credFile = '/Users/Dave/github/shltr/userModel/client_secret.txt'
 modelName = 'clients'
 
@@ -42,8 +42,8 @@ def main():
 	app = ClarifaiApp(creds[0][:-1], creds[1][:-1])
 	addInputs(app)
 	model = app.models.create(modelName)
-	addConcepts(model)
-	model.train()
+	#addConcepts(model)
+	#model.train()
 
 if __name__ == "__main__":
     main()
