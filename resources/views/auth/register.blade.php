@@ -61,6 +61,13 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="image" class="col-md-4 control-label">Upload Profile Image</label>
+                            <div class="col-md-6">
+                                <input type="file" name="image" id="image">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
                                     Register

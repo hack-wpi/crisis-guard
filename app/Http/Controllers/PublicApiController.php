@@ -70,4 +70,17 @@ class PublicApiController extends Controller
             return Response::json(['picture' => $profile->picture, 'name' => $profile->name], 200);
         }
     }
+
+    public function uploadProfilePicture(Request $request) {
+        $this->validate($request, [
+            'user_id' => 'numeric|required',
+        ]);
+
+        $name=str_random(30) . '-' . $request->file('image')->getClientOriginalName();
+        $request->file('image')->move('image/users',$name);
+
+        DB::table('users')->where('id', $request->input('user_id'))->update(['picture' => $name]);
+
+        return Response::json([['msg' => 'success'], 200);
+    }
 }

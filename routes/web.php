@@ -16,8 +16,14 @@ Route::group(['prefix' => 'api'], function() {
     Route::get('flare', 'PublicApiController@getFlares')->middleware('checkRole');
     Route::get('getUserId', 'PublicApiController@getUserId');
     Route::get('nearByProfile', 'PublicApiController@nearByProfile');
+    Route::post('uploadProfilePicture', 'PublicApiController@uploadProfilePicture');
 });
 
+Route::get('/profile', 'PageController@profile');
+
+Route::group(['prefix' => 'user'], function () {
+    Route::get('updateProfilePicture', 'UserController@updateProfilePicture');
+});
 Route::get('/test', 'PageController@test');
 
 Auth::routes();
