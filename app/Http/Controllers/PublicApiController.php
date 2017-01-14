@@ -23,7 +23,7 @@ class PublicApiController extends Controller
         $long = $request->input('longitude');
         $lat = $request->input('lat');
         $type = ($request->input('type'))? $request->input('type') : 'global';
-        
+
         $userId = DB::table('oauth_access_tokens')->select('user_id')->where('id', $request->input('user_token'))->first();
         $write = DB::table('flares')->insert([
             ['user_id' => $userId, 'type' => $type, 'long' => $long, 'lat' => $lat]
