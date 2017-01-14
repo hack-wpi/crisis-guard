@@ -6,7 +6,7 @@ require 'recipe/laravel.php';
 
 set('repository', 'git@github.com:hack-wpi/shltr.git');
 set('http_user', 'ubuntu');
-set('branch', 'master');
+set('branch', 'jhassler/feature/flare_api');
 set('keep_releases', 3);
 
 // Servers

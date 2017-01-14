@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->enum('roles', ['user', 'rescuer', 'organizer'])->default('user');
+            $table->string('picture')->default('profile.png');
             $table->rememberToken();
             $table->timestamps();
         });

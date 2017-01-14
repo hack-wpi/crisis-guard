@@ -13,8 +13,9 @@
 
 Route::group(['prefix' => 'api'], function() {
     Route::post('flare', 'PublicApiController@sendFlare');
-    ROute::get('flare', 'PublicApiController@getFlares')->middleware('checkRole');;
+    Route::get('flare', 'PublicApiController@getFlares')->middleware('checkRole');
     Route::get('getUserId', 'PublicApiController@getUserId');
+    Route::get('nearByProfile', 'PublicApiController@nearByProfile');
 });
 
 Route::get('/test', 'PageController@test');

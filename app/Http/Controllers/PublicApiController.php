@@ -45,7 +45,7 @@ class PublicApiController extends Controller
 
     public function getUserId(Request $request) {
         $this->validate($request, [
-            'email' => 'max:255|required'
+            'email' => 'email|required'
         ]);
 
         $userId = DB::table('users')->select('id')->where('email', $request->input('email'))->first();
@@ -54,6 +54,20 @@ class PublicApiController extends Controller
             return Response::json(['msg' => 'Failed to get user id'], 400);
         } else {
             return Response::json($userId, 200);
+        }
+    }
+
+    public function nearByProfile(Request $request) {
+        $this->validate($request, [
+            'email' => 'email|required'
+        ]);
+
+        $profile = DB::table('users')->select('name', 'picture')->where('email', $request->input('email'))->first();
+        
+        if (!$profile) {
+            return Response::json(['msg' => 'Failed to get user profile'], 400);
+        } else {
+            return Response::json(['picture' => $profile->picture, 'name' => $profile->name], 200);
         }
     }
 }
