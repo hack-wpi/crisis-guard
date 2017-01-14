@@ -41,7 +41,8 @@ task('deploy:laravel', function() {
     cd('{{deploy_path}}/current');
     run("cp /home/ubuntu/configs/.env.deploy ./.env");
     run("php artisan key:generate");
-    run("php artisan migrate:refresh --seed");
+    run("php artisan migrate");
+    run("php artisan passport:install");
 })->setPrivate();
 
 /**
