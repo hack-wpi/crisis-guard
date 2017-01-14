@@ -11,6 +11,10 @@
 |
 */
 
+Route::group(['prefix' => 'api'], function() {
+    Route::any('flare', 'PublicApiController@flare');
+});
+
 Route::get('/', function () {
     return view('welcome');
 });

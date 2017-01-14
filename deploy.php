@@ -11,7 +11,7 @@ set('keep_releases', 3);
 
 // Servers
 
-server('production', 'hack.symerit.com')
+server('production', '54.80.188.226')
     ->user('ubuntu')
     ->identityFile()
     ->forwardAgent()
@@ -25,6 +25,7 @@ task('deploy:start', function() {
     cd('~');
     run("if [ ! -d {{deploy_path}} ]; then mkdir -p {{deploy_path}}; fi");
     cd('{{deploy_path}}');
+    run("eval \"$(ssh-agent)\"");
 })->setPrivate();
 
 /**Set Storage chmod*/
