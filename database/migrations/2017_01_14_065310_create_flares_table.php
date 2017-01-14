@@ -14,6 +14,7 @@ class CreateFlaresTable extends Migration
     public function up()
     {
         Schema::create('flares', function (Blueprint $table) {
+            $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->timestamp('activated_on');
             $table->timestamp('cleared_on')->nullable();

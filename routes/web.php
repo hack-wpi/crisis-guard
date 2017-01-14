@@ -12,11 +12,11 @@
 */
 
 Route::group(['prefix' => 'api'], function() {
-    Route::any('flare', 'PublicApiController@flare');
+    Route::post('flare', 'PublicApiController@flare');
 });
 
-Route::get('/test', 'HomeController@test');
+Route::get('/test', 'PageController@test');
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'PageController@index');

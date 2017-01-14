@@ -34,10 +34,11 @@
         <div id="page-wrapper">
         <!-- Header -->
             <header id="header">
-                <h1 id="logo"><a href="index.html">Landed</a></h1>
+                <h1 id="logo"><a href="/">Landed</a></h1>
                 <nav id="nav">
                     <ul>
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="/">Home</a></li>
+                        @if(Auth::user())
                         <li><a href="#">Layouts</a>
                             <ul>
                                 <li><a href="left-sidebar.html">Left Sidebar</a></li>
@@ -55,7 +56,17 @@
                             </ul>
                         </li>
                         <li><a href="elements.html">Elements</a></li>
-                        <li><a href="#" class="button special">Sign Up</a></li>
+                        <a href="{{ url('/logout') }}"
+                            onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                            Logout
+                        </a>
+                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                        @else
+                        <li><a href="{{ url('/register') }}" class="button special">Sign Up</a></li>
+                        @endif
                     </ul>
                 </nav>
             </header>
