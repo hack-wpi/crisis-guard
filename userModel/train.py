@@ -42,8 +42,8 @@ def main():
 	app = ClarifaiApp(creds[0][:-1], creds[1][:-1])
 	addInputs(app)
 	model = app.models.create(modelName)
-	#addConcepts(model)
-	#model.train()
+	addConcepts(model)
+	model.train()
 
 if __name__ == "__main__":
     main()
