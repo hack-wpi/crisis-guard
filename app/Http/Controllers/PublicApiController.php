@@ -24,9 +24,9 @@ class PublicApiController extends Controller
         $lat = $request->input('lat');
         $type = ($request->input('type'))? $request->input('type') : 'global';
 
-        DB::table('flares')->where('user_id', $userId)->update(['cleared_on' => date("Y-m-d H:i:s")]);
-
         $userId = $request->input('user_id');
+
+        DB::table('flares')->where('user_id', $userId)->update(['cleared_on' => date("Y-m-d H:i:s")]);
 
         $write = DB::table('flares')->insert([
             ['user_id' => $userId, 'type' => $type, 'long' => $long, 'lat' => $lat]
