@@ -21,7 +21,7 @@ Route::group(['prefix' => 'api'], function() {
 
 Route::get('/profile', 'PageController@profile');
 
-Route::group(['prefix' => 'user'], function () {
+Route::group(['prefix' => 'users'], function () {
     Route::get('updateProfilePicture', 'UserController@updateProfilePicture');
 });
 Route::get('/test', 'PageController@test');
