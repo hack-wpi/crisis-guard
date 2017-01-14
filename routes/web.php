@@ -13,6 +13,7 @@
 
 Route::group(['prefix' => 'api'], function() {
     Route::post('flare', 'PublicApiController@flare');
+    Route::get('getUserId', 'PublicApiController@getUserId');
 });
 
 Route::get('/test', 'PageController@test');
