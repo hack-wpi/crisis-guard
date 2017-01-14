@@ -4,6 +4,7 @@
 from clarifai.rest import ClarifaiApp
 from clarifai.rest import Image as ClImage
 from sys import argv
+import json
 
 credFile = '/Users/Dave/github/shltr/userModel/client_secret.txt'
 modelName = 'clients'
@@ -22,10 +23,13 @@ def predict(model):
 		image = ClImage(file_obj=open(argv[1], 'rb'))
 	response = model.predict([image])
 
+	output = {}
+	output['matches'] = []
 	for concept in response['outputs'][0]['data']['concepts']:
 		name = concept['name']
 		val = round(concept['value'], 2)
-		print(str(name) + " - " + str(val))
+		output['matches'].append({'name':name, 'prob':val})
+	print(json.dumps(output))
 
 def main():
 	creds = getCredentials()
