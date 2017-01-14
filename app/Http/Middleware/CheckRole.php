@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use DB;
+use Response;
 
 class CheckRole
 {
@@ -15,7 +17,11 @@ class CheckRole
      */
     public function handle($request, Closure $next)
     {
-
-        return $next($request);
+        $type = DB::table('users')->select('roles')->where('id', $request->input('user_id'))->first();
+        if ($type && $type['roles'] != 'user') {       
+            return $next($request);
+        } else {
+            return Response::json(['msg' => 'User role failed'], 401);
+        }
     }
 }

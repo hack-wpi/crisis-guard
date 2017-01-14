@@ -12,7 +12,7 @@ class PublicApiController extends Controller
 //       $this->middleware('auth:api');
     }
 
-    public function flare(Request $request) {
+    public function sendFlare(Request $request) {
         $this->validate($request, [
             'longitude' => 'numeric|required',
             'lat' => 'numeric|required',
@@ -35,6 +35,10 @@ class PublicApiController extends Controller
         } else {
             return Response::json(['msg' => 'Success :)'], 200);
         }
+    }
+
+    public function getFlares(Request $request) {
+        return "Hello World";
     }
 
     public function getUserId(Request $request) {
