@@ -146,14 +146,15 @@ class PublicApiController extends Controller
         //}
         
         $file = array_get($input,'image');
-        $destinationPath = '/home/ubuntu/http/current/usrimg/production';
+        $destinationPath = '/home/ubuntu/http/current/public/images/processing/';
+        $fileDestination = '/home/ubuntu/http/current/srcimg/production/'
         $extension = $file->getClientOriginalExtension();
         $fileName = rand(11111, 99999) . '.' . $extension;
         $upload_success = $file->move($destinationPath, $fileName);
         
         if ($upload_success) {
-            exec("python /home/ubuntu/http/current/userModel/predict.py /home/ubuntu/http/current/usrimg/production".$fileName." 2>&1", $output);
-            var_dump($output);
+            exec("python /home/ubuntu/http/current/userModel/predict.py http://hach.symerit.com/images/processing/".$fileName." 2>&1", $output);
+            $file->move($finalDestination, $destinationPath.$fileName);
             return Response::json(['msg' => 'Updated Profile Image'], 200);
         }
         return Response::json(['msg' => 'Failed to Upload Image'], 400);

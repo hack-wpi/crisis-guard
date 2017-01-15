@@ -18,10 +18,10 @@ Route::group(['prefix' => 'api'], function() {
     Route::get('nearByProfile', 'PublicApiController@nearByProfile');
     Route::post('uploadProfilePicture', 'PublicApiController@uploadProfilePicture');
     Route::post('uploadTrainingPicture', 'PublicApiController@uploadTrainingPicture');
-    Route::any('uploadProductionPicture', 'PublicApiController@uploadProductionPicture');
+    Route::post('uploadProductionPicture', 'PublicApiController@uploadProductionPicture');
 });
 
-Route::get('/profile', 'PageController@profile');
+Route::get('/profile', 'PageController@profile')->middleware('auth');
 
 Route::group(['prefix' => 'users'], function () {
     Route::any('updateProfilePicture', 'UserController@updateProfilePicture');

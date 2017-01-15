@@ -28,11 +28,11 @@ class PageController extends Controller
 
     public function profile()
     {
-        return view('pages.test');
+        return view('pages.dashboard');
     }
 
     public function test()
     {
-
+        return view('home');
     }
 }

@@ -32,7 +32,6 @@ task('deploy:start', function() {
 task('deploy:storage', function() {
     cd('{{deploy_path}}');
     run('chmod -R 777 current/storage');
-    run('chgrp -R www-data current/usrimg');
 })->setPrivate();
 
 /**
