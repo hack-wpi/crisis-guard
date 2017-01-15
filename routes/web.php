@@ -29,6 +29,7 @@ Route::group(['prefix' => 'users'], function () {
 });
 Route::get('/profile', 'PageController@profile')->middleware('auth');
 Route::get('/map', 'PageController@map')->middleware('auth');
+Route::get('mapHelper', 'PageController@mapHelper');
 
 Auth::routes();
 

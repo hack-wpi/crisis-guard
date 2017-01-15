@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Auth;
+use Response;
 
 class PageController extends Controller
 {
@@ -34,6 +35,17 @@ class PageController extends Controller
         return view('pages.profile', ['name'=>$query->name, 'picture'=>$query->picture, 'email'=>$query->email, 'roles'=>$query->roles]);
     }
 
+    public function mapHelper()
+    {
+        $temp = array();
+        $query = DB::table('flares')->select('*')->whereNull('cleared_on')->get();
+
+        foreach ($query as &$item) {
+            var_dump($item);
+            array_push($temp, ['long' => $item->long, 'lat' => $item->lat]);
+        }
+        return Response::json(json_encode($temp), 200);
+    }
     public function map()
     {
         return view('pages.map');
