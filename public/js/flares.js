@@ -30,15 +30,15 @@ function initMap() {
   var markerCluster = new MarkerClusterer(map, markers,
       {imagePath: '/images/m'});
 
-  var locations = JSON.parse('http://hack.symerit.com/mapHelper');
 }
 
-/*
 var locations = [
   {lat: 37.774929, lng: -122.34216},
   {lat: 37.774929, lng: -122.41423416},
   {lat: 37.774929, lng: -122.213},
   {lat: 42.407211, lng: -71.382437},
   {lat: 42.407211, lng: -71.312},
+  {lat: 41.977287, lng: -70.038185},
+  {lat: 41.976287, lng: -70.037185},
+  {lat: 41.975287, lng: -70.036185},
 ]
-*/

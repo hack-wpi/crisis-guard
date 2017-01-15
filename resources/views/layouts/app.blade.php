@@ -13,13 +13,14 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Crisis Guard</title>
 
     <!-- Styles -->
     <!--link href="/css/app.css" rel="stylesheet"-->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
     <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel=icon href="/images/favicon.ico">
     <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
     <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
     <!-- Scripts -->
@@ -34,11 +35,12 @@
         <div id="page-wrapper">
         <!-- Header -->
             <header id="header">
-                <h1 id="logo"><a href="/">Guardian</a></h1>
+                <h1 id="logo"><a href="/">Crisis Guard</a></h1>
                 <nav id="nav">
                     <ul>
                         <li><a href="/">Home</a></li>
                         @if(Auth::user())
+                        <li><a href="{{ url('/map') }}">Flare Map</a></li>
                         <li><a href="{{ url('/profile') }}" style="padding-right: 25px;">Profile</a></li>
                         <a href="{{ url('/logout') }}"
                             onclick="event.preventDefault();
@@ -60,10 +62,10 @@
             <!-- Footer -->
             <footer id="footer">
                 <ul class="icons">
-                    <li><a href="#" class="icon alt fa-github"><span class="label">GitHub</span></a></li>
+                    <li><a href="https://github.com/hack-wpi" class="icon alt fa-github"><span class="label">GitHub</span></a></li>
                 </ul>
                 <ul class="copyright">
-                    <li>&copy; Guardian. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+                    <li>&copy; Crisis Guard. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
                 </ul>
             </footer>
 

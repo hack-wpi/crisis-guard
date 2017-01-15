@@ -7,7 +7,7 @@
         <header>
             <h2>The future of disaster recovery is here.</h2>
             <p>It is easy to fall into chaos during a disaster.<br />
-            Guardian is here to help.</p>
+            Crisis Guard is here to help.</p>
         </header>
         <span class="image"><img src="images/symbol.svg" alt="" /></span>
     </div>
@@ -21,12 +21,12 @@
                 <div class="row">
                     <div class="4u 12u$(medium)">
                         <header>
-                            <h2>What is Guardian?</h2>
-                            <p>In short, the future of rescue.</p>
+                            <h2>What is Crisis Guard?</h2>
+                            <p>In short- the future of rescue.</p>
                         </header>
                     </div>
                     <div class="4u 12u$(medium)">
-                        <p>Guardian is the next step in using 21st century technology
+                        <p>Crisis Guard is the next step in using 21st century technology
                         to ensure a brigher and safer future. By taking advantage of
                         advances in portable electronics, we can offer a product that
                         works to ensure that emergency service are avaialible when you need them,
@@ -62,7 +62,7 @@
         <div class="content">
             <header>
                 <h2>Use advanced facial recognition to help find loved ones.</h2>
-                <p>Rescuers will run images against photos of the Guardian community
+                <p>Rescuers will run images against photos of the Crisis Guard community
                 to identify individuals during rescue missions.</p>
             </header>
         </div>
@@ -74,7 +74,7 @@
         <div class="content">
             <header>
                 <h2>Use 'Nearby' technology to find others quickly</h2>
-                <p>Use Guardian's Nearby feature to locate others around you
+                <p>Use Crisis Guard's Nearby feature to locate others around you
                      quickly and easily.</p>
             </header>
         </div>
@@ -84,7 +84,7 @@
 <section id="four" class="wrapper style1 special fade-up">
     <div class="container">
         <header class="major">
-            <h2>Guardian also helps emergency responders</h2>
+            <h2>Crisis Guard also helps emergency responders</h2>
             <p>Let the very people you are going to save help you</p>
         </header>
     <div class="box alt">
@@ -105,7 +105,7 @@
             <section class="4u$ 6u(medium) 12u$(xsmall)">
                 <span class="icon alt major fa-sitemap"></span>
                 <h3>Stay organized</h3>
-                <p>By faciliating through the information provided by Guardian, emergency response
+                <p>By faciliating through the information provided by Crisis Guard, emergency response
                     teams can feel more confident in their ability to tackle the situation.</p>
             </section>
         </div>
