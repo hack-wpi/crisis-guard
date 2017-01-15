@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
+
     /**
      * Create a new controller instance.
      *
@@ -13,7 +14,6 @@ class PageController extends Controller
      */
     public function __construct()
     {
-//        $this->middleware('auth');
     }
 
     /**
@@ -33,6 +33,11 @@ class PageController extends Controller
 
     public function test()
     {
+        return view('pages.dashboard');
+    }
 
+    public function test()
+    {
+        return view('home');
     }
 }

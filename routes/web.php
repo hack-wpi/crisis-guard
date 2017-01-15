@@ -13,10 +13,20 @@
 
 Route::group(['prefix' => 'api'], function() {
     Route::post('flare', 'PublicApiController@sendFlare');
-    ROute::get('flare', 'PublicApiController@getFlares')->middleware('checkRole');
+    Route::get('flare', 'PublicApiController@getFlares')->middleware('checkRole');
     Route::get('getUserId', 'PublicApiController@getUserId');
+    Route::get('nearByProfile', 'PublicApiController@nearByProfile');
+    Route::post('uploadProfilePicture', 'PublicApiController@uploadProfilePicture');
+    Route::post('uploadTrainingPicture', 'PublicApiController@uploadTrainingPicture');
+    Route::post('uploadProductionPicture', 'PublicApiController@uploadProductionPicture');
+    Route::get('getProductionJson', 'PublicApiController@getProductionJson');
 });
 
+Route::get('/profile', 'PageController@profile')->middleware('auth');
+
+Route::group(['prefix' => 'users'], function () {
+    Route::any('updateProfilePicture', 'UserController@updateProfilePicture');
+});
 Route::get('/test', 'PageController@test');
 Route::get('/profile', 'PageController@profile')->middleware('auth');
 

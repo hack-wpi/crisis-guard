@@ -1,8 +1,7 @@
 # !/usr/bin/python
 # Copyright 2017 Dave Machado
 
-# user_add.py <"userID"> <"profile picture path">
-
+from clarifai import rest
 from clarifai.rest import ClarifaiApp
 import sys
 

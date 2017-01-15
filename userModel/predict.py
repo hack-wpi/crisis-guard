@@ -42,8 +42,8 @@ def checkAGE(image_url):
 	if not image_url.startswith("http"):
 		return
 	curl = '''curl -s -X POST -H 'Authorization: Bearer RswCOv32l9poVQMbQPmoN5GbNJfQdp' -H "Content-Type: application/json" -d '{"inputs": [{"data": {"image": {"url": "''' + image_url + '''"}}}]}' https://api.clarifai.com/v2/models/c0c0ac362b03416da06ab3fa36fb58e3/outputs'''
-	os.system(curl + " > age_temp.json")
-	with open('age_temp.json') as data_file:
+	os.system(curl + " >/home/ubuntu/http/current/userModel/age_temp.json")
+	with open('/home/ubuntu/http/current/userModel/age_temp.json') as data_file:
 		data = json.load(data_file)
 		if data["status"]["description"] == "Ok":
 			age_val = data["outputs"][0]["data"]["regions"][0]["data"]["faces"][0]["age"][0]['name']
@@ -60,7 +60,7 @@ def checkAGE(image_url):
 			output = {'status': 'Good', 'age': age_val, 'gender': gender_val, 'ethnicity': ethnic_total_val}
 		else:
 			output = {'status': 'Bad'}
-		os.system("rm age_temp.json")
+		os.system("rm /home/ubuntu/http/current/userModel/age_temp.json")
 		return output
 
 def combineJSON(age_json, usr_json):
