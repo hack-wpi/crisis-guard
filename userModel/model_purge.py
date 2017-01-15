@@ -1,9 +1,11 @@
 # !/usr/bin/python
 # Copyright 2017 Dave Machado
 
+# Purge all models from Clarifai application
+
 from clarifai.rest import ClarifaiApp
 
-credFile = '/Users/Dave/github/shltr/userModel/client_secret.txt'
+credFile = '/home/ubuntu/configs/clarifai_secret.txt'
 
 def getCredentials():
 	creds = []
@@ -21,4 +23,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

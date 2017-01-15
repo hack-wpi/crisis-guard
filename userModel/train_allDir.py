@@ -6,7 +6,7 @@ from clarifai.rest import Image as ClImage
 import os
 
 rootDir = '/Users/Dave/github/shltr/userModel/inputs/train'
-credFile = '/Users/Dave/github/shltr/userModel/client_secret.txt'
+credFile = '/home/ubuntu/configs/clarifai_secret.txt'
 modelName = 'users'
 
 concepts = []

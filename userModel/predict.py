@@ -1,6 +1,8 @@
 # !/usr/bin/python
 # Copyright 2017 Dave Machado
 
+# predict.py <"test-against image path">
+
 from clarifai.rest import ClarifaiApp
 from clarifai.rest import Image as ClImage
 import sys
@@ -8,7 +10,7 @@ import os
 import json
 import urllib2
 
-credFile = '/Users/Dave/github/shltr/userModel/client_secret.txt'
+credFile = '/home/ubuntu/configs/clarifai_secret.txt'
 model_name = 'users'
 
 def getCredentials():
