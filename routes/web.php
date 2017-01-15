@@ -19,6 +19,7 @@ Route::group(['prefix' => 'api'], function() {
     Route::post('uploadProfilePicture', 'PublicApiController@uploadProfilePicture');
     Route::post('uploadTrainingPicture', 'PublicApiController@uploadTrainingPicture');
     Route::post('uploadProductionPicture', 'PublicApiController@uploadProductionPicture');
+    Route::get('getProductionJson', 'PublicApiController@getProductionJson');
 });
 
 Route::get('/profile', 'PageController@profile')->middleware('auth');

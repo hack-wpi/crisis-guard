@@ -153,10 +153,10 @@ class PublicApiController extends Controller
             exec("python /home/ubuntu/http/current/userModel/predict.py http://hack.symerit.com/images/processing/".$fileName." 2>&1", $output);
             $destinationPath .= $fileName;
             exec("mv /home/ubuntu/http/current/public/images/processing/* ".$finalDestination);
-            return Response::json(['msg' => 'Processed Image'], 200);
             DB::table('production_clarefai')->insert(
                 ['user_id' => $request->input('user_id'), 'json' => json_encode($output)]
             );
+            return Response::json(['msg' => 'Processed Image'], 200);
         }
         return Response::json(['msg' => 'Failed to Upload Image'], 400);
     }
