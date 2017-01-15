@@ -34,7 +34,7 @@
         <div id="page-wrapper">
         <!-- Header -->
             <header id="header">
-                <h1 id="logo"><a href="/">Landed</a></h1>
+                <h1 id="logo"><a href="/">Guardian</a></h1>
                 <nav id="nav">
                     <ul>
                         <li><a href="/">Home</a></li>
@@ -75,15 +75,10 @@
             <!-- Footer -->
             <footer id="footer">
                 <ul class="icons">
-                    <li><a href="#" class="icon alt fa-twitter"><span class="label">Twitter</span></a></li>
-                    <li><a href="#" class="icon alt fa-facebook"><span class="label">Facebook</span></a></li>
-                    <li><a href="#" class="icon alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
-                    <li><a href="#" class="icon alt fa-instagram"><span class="label">Instagram</span></a></li>
                     <li><a href="#" class="icon alt fa-github"><span class="label">GitHub</span></a></li>
-                    <li><a href="#" class="icon alt fa-envelope"><span class="label">Email</span></a></li>
                 </ul>
                 <ul class="copyright">
-                    <li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+                    <li>&copy; Guardian. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
                 </ul>
             </footer>
 
