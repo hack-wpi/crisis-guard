@@ -79,7 +79,6 @@ class PublicApiController extends Controller
     {
         $rules = [
             'user_id' => 'numeric|required',
-            'file' => 'image|max:3000',
         ];
         $input = Input::all();
     
@@ -109,7 +108,6 @@ class PublicApiController extends Controller
     {
         $rules = [
             'user_id' => 'numeric|required',
-            'file' => 'image|max:3000',
         ];
         $input = Input::all();
     
@@ -136,27 +134,41 @@ class PublicApiController extends Controller
     public function uploadProductionPicture(Request $request)
     {
         $rules = [
-            'file' => 'image|max:3000',
+            'user_id' => 'numeric|required',
         ];
         $input = Input::all();
     
-        //$validation = Validator::make($input, $rules);
-        //if ($validation->fails()) {
-        //    return Response::json(['msg' => 'Failed to Validate Image'], 400);
-        //}
-        
+        $validation = Validator::make($input, $rules);
+        if ($validation->fails()) {
+            return Response::json(['msg' => 'Failed to Validate Image'], 400);
+        }
         $file = array_get($input,'image');
         $destinationPath = '/home/ubuntu/http/current/public/images/processing/';
-        $fileDestination = '/home/ubuntu/http/current/srcimg/production/'
+        $finalDestination = '/home/ubuntu/http/current/usrimg/production/';
         $extension = $file->getClientOriginalExtension();
         $fileName = rand(11111, 99999) . '.' . $extension;
         $upload_success = $file->move($destinationPath, $fileName);
-        
+
         if ($upload_success) {
-            exec("python /home/ubuntu/http/current/userModel/predict.py http://hach.symerit.com/images/processing/".$fileName." 2>&1", $output);
-            $file->move($finalDestination, $destinationPath.$fileName);
-            return Response::json(['msg' => 'Updated Profile Image'], 200);
+            exec("python /home/ubuntu/http/current/userModel/predict.py http://hack.symerit.com/images/processing/".$fileName." 2>&1", $output);
+            $destinationPath .= $fileName;
+            exec("mv /home/ubuntu/http/current/public/images/processing/* ".$finalDestination);
+            return Response::json(['msg' => 'Processed Image'], 200);
+            DB::table('production_clarefai')->insert(
+                ['user_id' => $request->input('user_id'), 'json' => json_encode($output)]
+            );
         }
         return Response::json(['msg' => 'Failed to Upload Image'], 400);
+    }
+
+    public function getProductionJson(Request $request)
+    {
+        $this->validate($request, [
+            'user_id' => 'numeric|required'
+        ]);
+
+        $query = DB::table('production_clarefai')->select('json')->where('user_id', $request->input('user_id'))->orderBy('id', 'desc')->first();
+
+        return Response::json(json_decode($query->json), 200);
     }
 }
