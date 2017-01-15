@@ -77,6 +77,7 @@ class PublicApiController extends Controller
 
     public function uploadProfilePicture(Request $request)
     {
+
         $rules = [
             'user_id' => 'numeric|required',
             'file' => 'image|max:3000',
@@ -95,9 +96,9 @@ class PublicApiController extends Controller
         $upload_success = $file->move($destinationPath, $fileName);
         
         if ($upload_success) {
-            $oldPicture = DB::table('users')->select('picture')->where('id', $request->input('user_id'));
+            $oldPicture = DB::table('users')->select('picture')->where('id', $request->input('user_id'))->first();
             if($oldPicture->picture == 'default.png') {
-                exec("python ../userModel/user_add.py ".Auth::id()." /home/ubuntu/http/current/public/images/users/".$filename, $output, $ret_code);
+                exec("python /home/ubuntu/http/current/userModel/user_add.py".$request->input('user_id')." /home/ubuntu/http/current/public/images/users/".$fileName." 2>&1", $output);
             }
             DB::table('users')->where('id', $request->input('user_id'))->update(['picture' => $fileName]);
             return Response::json(['msg' => 'Updated Profile Image'], 200);
