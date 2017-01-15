@@ -1,13 +1,15 @@
 # !/usr/bin/python
 # Copyright 2017 Dave Machado
 
+# user_train.py <"userID"> <"training images directory">
+
 from clarifai.rest import ClarifaiApp
 import os
 import sys
 
 concept_id = sys.argv[1]
 rootDir = sys.argv[2]
-credFile = '/Users/Dave/github/shltr/userModel/client_secret.txt'
+credFile = '/home/ubuntu/configs/clarifai_secret.txt'
 model_name = 'users'
 
 def getCredentials():

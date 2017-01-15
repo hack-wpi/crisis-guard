@@ -1,10 +1,12 @@
 # !/usr/bin/python
 # Copyright 2017 Dave Machado
 
+# user_add.py <"userID"> <"profile picture path">
+
 from clarifai.rest import ClarifaiApp
 import sys
 
-credFile = '/Users/Dave/github/shltr/userModel/client_secret.txt'
+credFile = '/home/ubuntu/configs/clarifai_secret.txt'
 
 def getCredentials():
 	creds = []
