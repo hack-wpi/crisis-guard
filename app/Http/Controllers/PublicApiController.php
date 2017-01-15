@@ -83,28 +83,25 @@ class PublicApiController extends Controller
         ];
         $input = Input::all();
     
-//        $validation = Validator::make($input, $rules);
- 
-//        if ($validation->fails()) {
-//            return Redirect::to('/')->with('message', 'Validation Failed');
-//        }
-        
-        
-           $file = array_get($input,'image');
-           // SET UPLOAD PATH
-            $destinationPath = 'images/users';
-            // GET THE FILE EXTENSION
-            $extension = $file->getClientOriginalExtension();
-            // RENAME THE UPLOAD WITH RANDOM NUMBER
-            $fileName = rand(11111, 99999) . '.' . $extension;
-            // MOVE THE UPLOADED FILES TO THE DESTINATION DIRECTORY
-            $upload_success = $file->move($destinationPath, $fileName);
-        
-        // IF UPLOAD IS SUCCESSFUL SEND SUCCESS MESSAGE OTHERWISE SEND ERROR MESSAGE
-        if ($upload_success) {
-            //return Redirect::to('/')->with('message', 'Image uploaded successfully');
-            return $fileName;
+        $validation = Validator::make($input, $rules);
+        if ($validation->fails()) {
+            return Response::json(['msg' => 'Failed to Validate Image'], 400);
         }
-        return "failed";
+        
+        $file = array_get($input,'image');
+        $destinationPath = 'images/users';
+        $extension = $file->getClientOriginalExtension();
+        $fileName = rand(11111, 99999) . '.' . $extension;
+        $upload_success = $file->move($destinationPath, $fileName);
+        
+        if ($upload_success) {
+            $oldPicture = DB::table('users')->select('picture')->where('id', $request->input('user_id'));
+            if($oldPicture->picture == 'default.png') {
+                exec("python ../userModel/user_add.py ".Auth::id()." /home/ubuntu/http/current/public/images/users/".$filename, $output, $ret_code);
+            }
+            DB::table('users')->where('id', $request->input('user_id'))->update(['picture' => $fileName]);
+            return Response::json(['msg' => 'Updated Profile Image'], 200);
+        }
+        return Response::json(['msg' => 'Failed to Update Image'], 400);
     }
 }
