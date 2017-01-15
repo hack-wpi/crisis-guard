@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\Redirect;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
+use Validator;
 use Response;
+use DB;
 
 class PublicApiController extends Controller
 {
     public function __construct(){
-       $this->middleware('auth:api');
+//       $this->middleware('auth:api');
     }
 
     public function sendFlare(Request $request) {
@@ -71,16 +75,36 @@ class PublicApiController extends Controller
         }
     }
 
-    public function uploadProfilePicture(Request $request) {
-        $this->validate($request, [
+    public function uploadProfilePicture(Request $request)
+    {
+        $rules = [
             'user_id' => 'numeric|required',
-        ]);
-
-        $name=str_random(30) . '-' . $request->file('image')->getClientOriginalName();
-        $request->file('image')->move('image/users',$name);
-
-        DB::table('users')->where('id', $request->input('user_id'))->update(['picture' => $name]);
-
-        return Response::json(['msg' => 'success'], 200);
+            'file' => 'image|max:3000',
+        ];
+        $input = Input::all();
+    
+//        $validation = Validator::make($input, $rules);
+ 
+//        if ($validation->fails()) {
+//            return Redirect::to('/')->with('message', 'Validation Failed');
+//        }
+        
+        
+           $file = array_get($input,'image');
+           // SET UPLOAD PATH
+            $destinationPath = 'images/users';
+            // GET THE FILE EXTENSION
+            $extension = $file->getClientOriginalExtension();
+            // RENAME THE UPLOAD WITH RANDOM NUMBER
+            $fileName = rand(11111, 99999) . '.' . $extension;
+            // MOVE THE UPLOADED FILES TO THE DESTINATION DIRECTORY
+            $upload_success = $file->move($destinationPath, $fileName);
+        
+        // IF UPLOAD IS SUCCESSFUL SEND SUCCESS MESSAGE OTHERWISE SEND ERROR MESSAGE
+        if ($upload_success) {
+            //return Redirect::to('/')->with('message', 'Image uploaded successfully');
+            return $fileName;
+        }
+        return "failed";
     }
 }
