@@ -41,7 +41,6 @@ class PageController extends Controller
         $query = DB::table('flares')->select('*')->whereNull('cleared_on')->get();
 
         foreach ($query as &$item) {
-            var_dump($item);
             array_push($temp, ['long' => $item->long, 'lat' => $item->lat]);
         }
         return Response::json(json_encode($temp), 200);
