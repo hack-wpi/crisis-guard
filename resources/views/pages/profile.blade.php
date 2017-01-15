@@ -14,7 +14,7 @@
 								<!-- Sidebar -->
 									<section id="sidebar">
 										<section>
-                                            <a href="#" class="image fit"><img src="images/avatar.png" alt="" /></a>
+                                            <a href="#" class="image fit"><img src="/images/users/{{$picture}}" alt="" /></a>
 										</section>
 									</section>
 
@@ -25,19 +25,15 @@
                                         <table border="1">
                                         <tr>
                                         <td>Name</td>
-                                        <td>Dave Machado</td>
+                                        <td>{{$name}}</td>
                                         </tr>
                                         <tr>
-                                        <td>Gender</td>
-                                        <td>Male</td>
+                                        <td>Email</td>
+                                        <td>{{$email}}</td>
                                         </tr>
                                         <tr>
-                                        <td>Age</td>
-                                        <td>21</td>
-                                        </tr>
-                                        <tr>
-                                        <td>Ethnicity</td>
-                                        <td>White</td>
+                                        <td>Role</td>
+                                        <td>{{$roles}}</td>
                                         </tr>
                                         </table>
 									</section>

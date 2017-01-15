@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
+use Auth;
 
 class PageController extends Controller
 {
@@ -28,16 +30,13 @@ class PageController extends Controller
 
     public function profile()
     {
-        return view('pages.profile');
+        $query = DB::table('users')->select('name', 'picture', 'email', 'roles')->where('id', Auth::id())->first();
+        return view('pages.profile', ['name'=>$query->name, 'picture'=>$query->picture, 'email'=>$query->email, 'roles'=>$query->roles]);
     }
 
-    public function test()
+    public function map()
     {
-        return view('pages.dashboard');
+        return view('pages.map');
     }
 
-    public function test()
-    {
-        return view('home');
-    }
 }

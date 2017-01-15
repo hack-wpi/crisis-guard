@@ -39,23 +39,7 @@
                     <ul>
                         <li><a href="/">Home</a></li>
                         @if(Auth::user())
-                        <li><a href="#">Layouts</a>
-                            <ul>
-                                <li><a href="left-sidebar.html">Left Sidebar</a></li>
-                                <li><a href="right-sidebar.html">Right Sidebar</a></li>
-                                <li><a href="no-sidebar.html">No Sidebar</a></li>
-                                <li>
-                                    <a href="#">Submenu</a>
-                                    <ul>
-                                        <li><a href="#">Option 1</a></li>
-                                        <li><a href="#">Option 2</a></li>
-                                        <li><a href="#">Option 3</a></li>
-                                        <li><a href="#">Option 4</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a href="elements.html">Elements</a></li>
+                        <li><a href="{{ url('/profile') }}" style="padding-right: 25px;">Profile</a></li>
                         <a href="{{ url('/logout') }}"
                             onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
@@ -65,6 +49,7 @@
                             {{ csrf_field() }}
                         </form>
                         @else
+                        <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}" class="button special">Sign Up</a></li>
                         @endif
                     </ul>

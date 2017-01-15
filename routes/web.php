@@ -27,8 +27,8 @@ Route::get('/profile', 'PageController@profile')->middleware('auth');
 Route::group(['prefix' => 'users'], function () {
     Route::any('updateProfilePicture', 'UserController@updateProfilePicture');
 });
-Route::get('/test', 'PageController@test');
 Route::get('/profile', 'PageController@profile')->middleware('auth');
+Route::get('/map', 'PageController@map')->middleware('auth');
 
 Auth::routes();
 
