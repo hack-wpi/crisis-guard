@@ -77,7 +77,6 @@ class PublicApiController extends Controller
 
     public function uploadProfilePicture(Request $request)
     {
-
         $rules = [
             'user_id' => 'numeric|required',
             'file' => 'image|max:3000',
@@ -101,6 +100,33 @@ class PublicApiController extends Controller
                 exec("python /home/ubuntu/http/current/userModel/user_add.py".$request->input('user_id')." /home/ubuntu/http/current/public/images/users/".$fileName." 2>&1", $output);
             }
             DB::table('users')->where('id', $request->input('user_id'))->update(['picture' => $fileName]);
+            return Response::json(['msg' => 'Updated Profile Image'], 200);
+        }
+        return Response::json(['msg' => 'Failed to Update Image'], 400);
+    }
+
+    public function uploadTrainingPicture(Request $request)
+    {
+        $rules = [
+            'user_id' => 'numeric|required',
+            'file' => 'image|max:3000',
+        ];
+        $input = Input::all();
+    
+        //$validation = Validator::make($input, $rules);
+        //if ($validation->fails()) {
+        //    return Response::json(['msg' => 'Failed to Validate Image'], 400);
+        //}
+        
+        $file = array_get($input,'image');
+        $destinationPath = '/home/ubuntu/http/current/usrimg/train/1';
+        $extension = $file->getClientOriginalExtension();
+        $fileName = rand(11111, 99999) . '.' . $extension;
+        $upload_success = $file->move($destinationPath, $fileName);
+        
+        if ($upload_success) {
+            exec("python /home/ubuntu/http/current/userModel/user_train.py 1 /home/ubuntu/http/current/usrimg/train/1 2>&1", $output);
+            var_dump($output);
             return Response::json(['msg' => 'Updated Profile Image'], 200);
         }
         return Response::json(['msg' => 'Failed to Update Image'], 400);
