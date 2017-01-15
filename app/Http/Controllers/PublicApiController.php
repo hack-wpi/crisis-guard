@@ -81,6 +81,6 @@ class PublicApiController extends Controller
 
         DB::table('users')->where('id', $request->input('user_id'))->update(['picture' => $name]);
 
-        return Response::json([['msg' => 'success'], 200);
+        return Response::json(['msg' => 'success'], 200);
     }
 }

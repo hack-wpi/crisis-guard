@@ -27,6 +27,6 @@ class UserController extends Controller
             ],
         ]);
 
-        return $responce;
+        return $response;
     }
 }
