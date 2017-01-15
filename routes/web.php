@@ -17,7 +17,8 @@ Route::group(['prefix' => 'api'], function() {
     Route::get('getUserId', 'PublicApiController@getUserId');
     Route::get('nearByProfile', 'PublicApiController@nearByProfile');
     Route::post('uploadProfilePicture', 'PublicApiController@uploadProfilePicture');
-    Route::any('uploadTrainingPicture', 'PublicApiController@uploadProfilePicture');
+    Route::post('uploadTrainingPicture', 'PublicApiController@uploadTrainingPicture');
+    Route::any('uploadProductionPicture', 'PublicApiController@uploadProductionPicture');
 });
 
 Route::get('/profile', 'PageController@profile');

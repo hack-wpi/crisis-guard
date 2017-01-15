@@ -113,12 +113,13 @@ class PublicApiController extends Controller
         ];
         $input = Input::all();
     
-        //$validation = Validator::make($input, $rules);
-        //if ($validation->fails()) {
-        //    return Response::json(['msg' => 'Failed to Validate Image'], 400);
-        //}
+        $validation = Validator::make($input, $rules);
+        if ($validation->fails()) {
+            return Response::json(['msg' => 'Failed to Validate Image'], 400);
+        }
         
         $file = array_get($input,'image');
+        //TODO MAKEDIR
         $destinationPath = '/home/ubuntu/http/current/usrimg/train/1';
         $extension = $file->getClientOriginalExtension();
         $fileName = rand(11111, 99999) . '.' . $extension;
@@ -129,6 +130,32 @@ class PublicApiController extends Controller
             var_dump($output);
             return Response::json(['msg' => 'Updated Profile Image'], 200);
         }
-        return Response::json(['msg' => 'Failed to Update Image'], 400);
+        return Response::json(['msg' => 'Failed to Upload Image'], 400);
+    }
+
+    public function uploadProductionPicture(Request $request)
+    {
+        $rules = [
+            'file' => 'image|max:3000',
+        ];
+        $input = Input::all();
+    
+        //$validation = Validator::make($input, $rules);
+        //if ($validation->fails()) {
+        //    return Response::json(['msg' => 'Failed to Validate Image'], 400);
+        //}
+        
+        $file = array_get($input,'image');
+        $destinationPath = '/home/ubuntu/http/current/usrimg/production';
+        $extension = $file->getClientOriginalExtension();
+        $fileName = rand(11111, 99999) . '.' . $extension;
+        $upload_success = $file->move($destinationPath, $fileName);
+        
+        if ($upload_success) {
+            exec("python /home/ubuntu/http/current/userModel/predict.py /home/ubuntu/http/current/usrimg/production".$fileName." 2>&1", $output);
+            var_dump($output);
+            return Response::json(['msg' => 'Updated Profile Image'], 200);
+        }
+        return Response::json(['msg' => 'Failed to Upload Image'], 400);
     }
 }
