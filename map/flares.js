@@ -19,6 +19,13 @@ function initMap() {
     });
   });
 
+  for (var i = 0; i < markers.length; i++) {
+      marker = markers[i];
+      google.maps.event.addListener(marker, "click", function (event) {
+                            alert(this.position);
+      });
+  }
+
   // Add a marker clusterer to manage the markers.
   var markerCluster = new MarkerClusterer(map, markers,
       {imagePath: 'images/m'});
