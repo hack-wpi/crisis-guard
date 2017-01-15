@@ -13,11 +13,12 @@
 
 Route::group(['prefix' => 'api'], function() {
     Route::post('flare', 'PublicApiController@sendFlare');
-    ROute::get('flare', 'PublicApiController@getFlares')->middleware('checkRole');;
+    ROute::get('flare', 'PublicApiController@getFlares')->middleware('checkRole');
     Route::get('getUserId', 'PublicApiController@getUserId');
 });
 
 Route::get('/test', 'PageController@test');
+Route::get('/profile', 'PageController@profile')->middleware('auth');
 
 Auth::routes();
 

@@ -26,6 +26,11 @@ class PageController extends Controller
         return view('pages.index');
     }
 
+    public function profile()
+    {
+        return view('pages.profile');
+    }
+
     public function test()
     {
 
